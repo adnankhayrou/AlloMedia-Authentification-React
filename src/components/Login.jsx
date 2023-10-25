@@ -1,6 +1,6 @@
   /* eslint-disable react/no-unescaped-entities */
   import { useState } from "react";
-  import { Link, useLocation } from "react-router-dom";
+  import { Link, useLocation, useNavigate } from "react-router-dom";
   import axios from "axios";
 
   const Login = () => {
@@ -15,10 +15,12 @@
     const [errors, setErrors] = useState({});
     const [valid, setValid] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
+
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(formData);
+      // console.log(formData);
       let isValid = true;
       let validationErrors = {}
       
@@ -43,7 +45,10 @@
 
       if(Object.keys(validationErrors).length === 0 ){
         axios.post('http://localhost:3000/api/auth/login', formData)
-        .then(result => console.log(result))
+        .then(result => {
+          console.log(result)
+          navigate('/')
+        })
         .catch(err => {
           const error = err.response.data.error;
           setError(error);
@@ -112,7 +117,7 @@
 
               <div className="inline-flex items-center">
                 <p className="flex mt-3 items-center font-sans text-sm font-normal leading-normal text-gray-700 antialiased">
-                  <Link className="font-medium text-pink-600 transition-colors hover:text-blue-700" to="#"> Forgot Password? </Link>
+                  <Link className="font-medium text-pink-600 transition-colors hover:text-blue-700" to="/forgotPassword"> Forgot Password? </Link>
                 </p>
               </div>
               <button className="mt-6 block w-full select-none rounded-lg bg-pink-700 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
