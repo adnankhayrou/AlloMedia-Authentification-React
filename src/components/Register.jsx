@@ -1,6 +1,8 @@
+/* eslint-disable react/no-unknown-property */
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -53,18 +55,15 @@ const Register = () => {
     setValid(isValid)
 
     if(Object.keys(validationErrors).length === 0 ){
-      // alert("Registration Successfully")
       const requestData = { ...formData };
       delete requestData.cPassword;
       axios.post('http://localhost:3000/api/auth/register',requestData)
       .then(result => {
-        const msg = result.data.success
-        alert(msg)
-        navigate('/login')
+        const msg = result.data.success;
+        navigate('/login', { state: { message: msg }}) ;
       })
       .catch(err => {
         const error = err.response ? err.response.data.error : 'An error occurred in register';
-        // alert(error);
         setError(error);
       });
     }
@@ -87,6 +86,7 @@ const Register = () => {
         </button>
       </div>)}
     </div>
+
       <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
         Sign Up
       </h4>
@@ -184,7 +184,7 @@ const Register = () => {
             Sign In
           </Link>
         </p>
-      </form>
+      </form> 
     </div>
     </div>
   );
