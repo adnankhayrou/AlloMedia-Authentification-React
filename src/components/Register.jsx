@@ -13,10 +13,12 @@ const Register = () => {
 
   const [errors, setErrors] = useState({});
   const [valid, setValid] = useState(true);
+  const [error, setError] = useState(null);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
     let isValid = true;
     let validationErrors = {}
     if(formData.name === "" || formData.name === null){
@@ -35,7 +37,7 @@ const Register = () => {
       validationErrors.password = "Password is Required"
     }else if(formData.password.length < 8){
       isValid = false;
-      validationErrors.email = "Password length at least 6 char"
+      validationErrors.password = "Password length at least 8 char"
     }
     if(formData.cPassword !== formData.password){
       isValid = false;
@@ -51,15 +53,38 @@ const Register = () => {
 
     if(Object.keys(validationErrors).length === 0 ){
       // alert("Registration Successfully")
-      delete formData.cPassword;
-      axios.post('http://localhost:3000/api/auth/register', formData)
-      .then(result => console.log(result))
-      .catch(err => console.log(err))
+      const requestData = { ...formData };
+      delete requestData.cPassword;
+      axios.post('http://localhost:3000/api/auth/register',requestData)
+      .then(result => {
+        const msg = result.data.success
+        alert(msg)
+      })
+      .catch(err => {
+        const error = err.response ? err.response.data.error : 'An error occurred in register';
+        // alert(error);
+        setError(error);
+      });
     }
   }
   return (
     <div className="flex items-center justify-center h-screen">
     <div className="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
+    <div>
+      {error && (
+      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <span className="block sm:inline">{error}</span>
+        <button
+          className="absolute top-0 bottom-0 right-0 px-4 py-3"
+          onClick={() => setError(null)} // This clears the error
+        >
+          <svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <title>Close</title>
+            <path d="M14.348 5.652a.5.5 0 0 0-.697 0L10 9.303 5.348 4.652a.5.5 0 1 0-.697.697L9.303 10l-4.651 4.652a.5.5 0 0 0 .697.697L10 10.697l4.652 4.651a.5.5 0 0 0 .697-.697L10.697 10l4.651-4.652a.5.5 0 0 0 0-.697z"/>
+          </svg>
+        </button>
+      </div>)}
+    </div>
       <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
         Sign Up
       </h4>
@@ -148,13 +173,12 @@ const Register = () => {
             </p>
         </div>
         <button className="mt-6 block w-full select-none rounded-lg bg-pink-700 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-          type="submit"
           data-ripple-light="true">
           Register
         </button>
         <p className="mt-4 block text-center font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
           Already have an account?
-          <Link className="me-2 font-medium text-pink-600 transition-colors hover:text-blue-700" to="/login">
+          <Link className="ms-2 font-medium text-pink-600 transition-colors hover:text-blue-700" to="/login">
             Sign In
           </Link>
         </p>
