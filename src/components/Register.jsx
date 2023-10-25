@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
@@ -14,6 +14,7 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const [valid, setValid] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
 
   const handleSubmit = (e) => {
@@ -59,6 +60,7 @@ const Register = () => {
       .then(result => {
         const msg = result.data.success
         alert(msg)
+        navigate('/login')
       })
       .catch(err => {
         const error = err.response ? err.response.data.error : 'An error occurred in register';
