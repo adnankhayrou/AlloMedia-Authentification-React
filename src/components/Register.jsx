@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Result } from "postcss";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -132,6 +131,7 @@ const Register = () => {
           <select className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-red-500 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
           name="role"
           onChange={(e) => setFormData({...formData, role: e.target.value})}>
+            <option value="">Select Your Role</option>
             <option value="652ebe92352060965955a486">Client</option>
             <option value="652ebec4352060965955a487">Livreur</option>
           </select>
@@ -154,7 +154,7 @@ const Register = () => {
         </button>
         <p className="mt-4 block text-center font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
           Already have an account?
-          <Link className="font-medium text-pink-600 transition-colors hover:text-blue-700" to="/login">
+          <Link className="me-2 font-medium text-pink-600 transition-colors hover:text-blue-700" to="/login">
             Sign In
           </Link>
         </p>
