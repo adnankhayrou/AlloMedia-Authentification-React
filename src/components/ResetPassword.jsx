@@ -4,20 +4,22 @@ import { useParams } from 'react-router-dom';
 
 function ResetPassword() {
   const { token } = useParams(); // taking the token from the URL
+  const tokenWithHyphens = token.replace(/-/g, '.');
+//   alert(tokenWithHyphens)
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
 //   const navigate = useNavigate();
 
-  const [passwords] = useState({
-    password:password,
-    confirmPassword:confirmPassword,
-  })
+  
+
+  console.log(password, confirmPassword)
 
   const handleResetPassword = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-        axios.post(`http://localhost:3000/api/auth/resetpassword/${token}`, passwords)
+        axios.post(`http://localhost:3000/api/auth/resetpassword/${tokenWithHyphens}`, {password,confirmPassword})
         .then(result => {
             const msg = result.data.success;
             console.log(msg);
@@ -49,13 +51,14 @@ function ResetPassword() {
         </button>
       </div>)}
     </div>
-    
+
       <h3>Reset Your Password</h3>
       <input
         type="password"
         placeholder="New Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        
       />
       <input
         type="password"
