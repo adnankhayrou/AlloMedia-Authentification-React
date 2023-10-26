@@ -60,7 +60,7 @@ const Register = () => {
       axios.post('http://localhost:3000/api/auth/register',requestData)
       .then(result => {
         const msg = result.data.success;
-        navigate('/login', { state: { message: msg }}) ;
+        navigate('/login', { state: { message: msg }});
       })
       .catch(err => {
         const error = err.response ? err.response.data.error : 'An error occurred in register';

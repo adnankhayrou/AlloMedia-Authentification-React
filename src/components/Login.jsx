@@ -10,7 +10,7 @@
     })
 
     const location = useLocation();
-    const message = location.state.message;
+    const message = location.state?.message;
 
     const [errors, setErrors] = useState({});
     const [valid, setValid] = useState(true);
@@ -47,7 +47,8 @@
         axios.post('http://localhost:3000/api/auth/login', formData)
         .then(result => {
           console.log(result)
-          navigate('/')
+          const user = result.data.user;
+          navigate('/', { state: { user: user }})
         })
         .catch(err => {
           const error = err.response.data.error;
@@ -62,8 +63,7 @@
           <div>
           {message && (
             <div className="bg-green-100 border border-green-400 text-green-700 fw-bold px-4 py-3 rounded relative" role="alert">
-              <span className="block sm:inline">{message}</span>
-              
+              <span className="block sm:inline">{message}</span> 
             </div>
           )}
         </div>

@@ -4,18 +4,13 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+    <nav className="flex items-center justify-between flex-wrap bg-pink-700 p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <svg
-          className="fill-current h-8 w-8 mr-2"
-          width="54"
-          height="54"
-          viewBox="0 0 54 54"
-          xmlns="http://www.w3.org/2000/svg" >
-          <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
         </svg>
         <span className="font-semibold text-xl tracking-tight">
-          Tailwind CSS
+          AlloMedia
         </span>
       </div>
       <div className="block lg:hidden">
@@ -35,13 +30,21 @@ const NavBar = () => {
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             Home
           </Link>
-          <Link to="/register"
+          {/* <Link to="/register"
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             Register
-          </Link>
-          <Link to="/login"
+          </Link> */}
+          {/* <Link to="/login"
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
             Login
+          </Link> */}
+          <Link to="/forgotPassword"
+            className="block me-2 mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+            Reset Password
+          </Link>
+          <Link to="/logout"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+            Logout
           </Link>
         </div>
       </div>
