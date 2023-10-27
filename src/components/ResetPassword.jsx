@@ -10,7 +10,7 @@ function ResetPassword() {
     })
 
   const { token } = useParams(); // taking the token from the URL
-  const tokenWithHyphens = token.replace(/-/g, '.');
+  const tokenWithdots = token.replace(/-/g, '.');
 //   alert(tokenWithHyphens)
 
   const [errors, setErrors] = useState({});
@@ -41,7 +41,7 @@ function ResetPassword() {
     setValid(isValid)
 
     if (Object.keys(validationErrors).length === 0 ) {
-        axios.post(`http://localhost:3000/api/auth/resetpassword/${tokenWithHyphens}`, formData)
+        axios.post(`http://localhost:3000/api/auth/resetpassword/${tokenWithdots}`, formData)
         .then(result => {
             const msg = result.data.success;
             setMessage(msg)

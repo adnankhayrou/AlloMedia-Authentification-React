@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 
 const Home = () => {
   const user = JSON.parse(Cookies.get('user'));
-  console.log(Cookies.get());
+  // console.log(Cookies.get());
 
 
   return (

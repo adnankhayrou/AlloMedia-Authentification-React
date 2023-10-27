@@ -6,6 +6,7 @@ import Login from './components/login'
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
 import Cookies from 'js-cookie';
+import VerifyEmail from './components/VerifyEmail'
 
 function App() {
   const isAuthenticated = !!Cookies.get('jwtToken'); 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/login' element={isAuthenticated ? <Navigate to="/" /> : <Login />} />
         <Route path='/forgotPassword' element={ <ForgotPassword />} />
         <Route path='/resetPassword/:token' element={ <ResetPassword /> }/>
+        <Route path='/verifyEmail/:token' element={ <VerifyEmail /> }/>
       </Routes>
     </BrowserRouter>
   )
