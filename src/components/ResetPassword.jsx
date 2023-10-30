@@ -10,7 +10,7 @@ function ResetPassword() {
     })
 
   const { token } = useParams(); // taking the token from the URL
-  const tokenWithdots = token.replace(/-/g, '.');
+  const tokenWithdots = token.replace(/~/g, '.');
 //   alert(tokenWithHyphens)
 
   const [errors, setErrors] = useState({});

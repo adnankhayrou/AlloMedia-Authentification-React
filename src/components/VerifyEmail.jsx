@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import NavBar from './NavBar';
+// import NavBar from './NavBar';
 
 
 const VerifyEmail = () => {
@@ -32,7 +32,7 @@ const VerifyEmail = () => {
 
   return (
     <>
-    <NavBar/>
+    {/* <NavBar/> */}
     <div className="flex items-center mt-10 pt-10 justify-center">
     <div>
       <div>
