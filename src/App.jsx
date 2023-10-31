@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 import Home from './components/Home'
-import Register from './components/register'
-import Login from './components/login'
+import Register from './components/Register'
+import Login from './components/Login'
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
 import Cookies from 'js-cookie';
