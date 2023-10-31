@@ -1,10 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -52,7 +53,7 @@ const Login = () => {
           Cookies.set("jwtToken", token);
           const user = JSON.stringify( result.data.user);
           Cookies.set('user', user) ;
-          window.location.reload();
+          navigate('/')
         })
         .catch((err) => {
           const error = err.response.data.error;

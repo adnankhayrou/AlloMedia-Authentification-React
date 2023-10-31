@@ -1,11 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import { React } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie';
 
 
 const NavBar = () => {
+  const navigate = useNavigate()
   const logout = () => {
       axios.get('http://localhost:3000/api/auth/logout')
       .then(result => {
@@ -13,7 +14,7 @@ const NavBar = () => {
         Cookies.remove('user') ;
         const msg = result.data.success;
         console.log(msg);
-        window.location.reload();
+        navigate('/login')
       })
       .catch(err => {
         const error = err.response ? err.response.data.error : 'An error occurred in logout';
@@ -48,14 +49,6 @@ const NavBar = () => {
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             Home
           </Link>
-          {/* <Link to="/register"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-            Register
-          </Link> */}
-          {/* <Link to="/login"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
-            Login
-          </Link> */}
           <Link to="/forgotPassword"
             className="block me-2 mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
             Reset Password
