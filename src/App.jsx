@@ -35,8 +35,6 @@ const LoginMiddleware = ({ children }) => {
 }
 
 function App() {
-  // const isAuthenticated = !!Cookies.get('jwtToken'); 
-
   return (
     <BrowserRouter>
       <Routes>
